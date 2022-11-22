@@ -1,0 +1,40 @@
+public class newConnect {
+	private static  Connection conn2;
+	private Statement stmt3;
+	private ResultSet result2;
+	private static Statement stmt2;
+	public static void main(String[] args) throws ClassNotFoundException,SQLException {
+		// TODO Auto-generated method stub
+	     try{
+	           	Class.forName("com.informix.jdbc.IfxDriver");
+	        	conn2 = (Connection) DriverManager.getConnection(".........");
+	            stmt2 = (java.sql.Statement)  conn2.createStatement();
+	            System.out.println("Подключение к базе удалось");
+	        	
+	          }catch (SQLException e) {
+	        	System.out.println("Подключение к базе неудалось");
+	        	}
+	     String query = "select id_surname,surname from subscriber_surname";
+
+	    
+				ResultSet rs = stmt2.executeQuery(query);
+
+				
+	     while (rs.next()) {
+	    	    	 
+	        String id = rs.getString("id_surname").trim();
+	        String surname = rs.getString("surname").trim();
+	        System.out.println("id====="+id+"surname===="+surname);
+	        
+	      }
+	     conn2.close();
+	    
+	
+	    
+		
+		
+		
+		
+	}
+
+}
