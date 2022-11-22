@@ -1,0 +1,32 @@
+CREATE TABLE subscriber_surname
+(
+    id_surname INT PRIMARY KEY ,
+    surname VARCHAR(20) NOT NULL
+);
+
+CREATE TABLE subscriber
+(
+    id_subscriber INT PRIMARY KEY,
+    id_surname INT REFERENCES subscriber_surname (id_surname)
+);
+
+CREATE TABLE type_phone
+(
+    id_type_phone INT PRIMARY KEY,
+    name VARCHAR(20) NOT NULL
+);
+
+CREATE TABLE phone
+(
+    id_phone INT PRIMARY KEY,
+	id_subscriber INT REFERENCES subscriber (id_subscriber),
+	phone VARCHAR(20),
+    id_type_phone INT REFERENCES type_phone (id_type_phone)
+);
+
+CREATE TABLE application
+(
+    id_application INT PRIMARY KEY,
+	id_phone INT REFERENCES phone (id_phone),
+    date DATE
+);
